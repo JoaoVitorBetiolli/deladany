@@ -306,7 +306,7 @@ p { margin: 0; }
 .rodape { margin-top: clamp(3rem, 6vw, 4.5rem); padding-top: 1.5rem; border-top: 1px solid rgba(62, 12, 111, 0.25); width: 100%; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.6rem 1.5rem; font-size: 0.88rem; color: var(--violeta); text-align: left; }
 
 /* ---------- botão flutuante ---------- */
-.zap { position: fixed; z-index: 30; right: calc(env(safe-area-inset-right, 0px) + 18px); bottom: calc(env(safe-area-inset-bottom, 0px) + 18px); display: inline-flex; align-items: center; gap: 0.55em; background: var(--violeta); color: var(--blush); text-decoration: none; font: 600 0.98rem/1 var(--f-texto); padding: 0.95em 1.25em 0.95em 1em; border-radius: 999px; box-shadow: 0 12px 28px -10px rgba(42, 14, 68, 0.6); transition: transform 300ms var(--ease-out), opacity 250ms ease, background-color 200ms ease; }
+.zap { position: fixed; z-index: 30; right: calc(env(safe-area-inset-right, 0px) + 18px); bottom: calc(env(safe-area-inset-bottom, 0px) + 18px); display: inline-flex; align-items: center; gap: 0.55em; background: var(--violeta); color: var(--blush); text-decoration: none; font: 600 0.98rem/1 var(--f-texto); padding: 0.95em 1.25em 0.95em 1em; border-radius: 999px; box-shadow: 0 0 0 2px rgba(252, 241, 236, 0.9), 0 12px 28px -10px rgba(42, 14, 68, 0.6); transition: transform 300ms var(--ease-out), opacity 250ms ease, background-color 200ms ease; }
 .zap svg { width: 1.45em; height: 1.45em; }
 .zap:active { transform: scale(0.96); }
 .zap.escondido { opacity: 0; transform: translateY(20px) scale(0.96); pointer-events: none; }
