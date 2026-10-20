@@ -1,6 +1,25 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Deladany Store</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Deladany: loja feminina online de São Paulo, desde 2021. Mais de 15 mil pedidos enviados para todo o Brasil.">
+<meta name="theme-color" content="#E29A87">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/icone-48.png">
+<link rel="apple-touch-icon" href="assets/icone-180.png">
+<!-- card que aparece ao compartilhar o link no WhatsApp, Instagram e afins -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Deladany Store">
+<meta property="og:title" content="Deladany Store">
+<meta property="og:description" content="Moda feminina que você vê vestida antes de comprar. Loja online de São Paulo, desde 2021, com envio para todo o Brasil.">
+<meta property="og:url" content="https://joaovitorbetiolli.github.io/deladany/">
+<meta property="og:image" content="https://joaovitorbetiolli.github.io/deladany/assets/compartilhar.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Allura&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Figtree:wght@400;500;600;700&display=swap">
@@ -34,7 +53,11 @@
   --largura: 1180px;
 }
 
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+img { max-width: 100%; }
 body {
+  margin: 0;
   background: var(--blush);
   color: var(--tinta);
   font-family: var(--f-texto);
