@@ -25,6 +25,15 @@ async function lerAtuais() {
   }
 }
 
+// Posts que não são look (avisos, sorteios, divulgação do site) ficam fora da arara:
+// basta a legenda ter a hashtag #DeladanyAvisa, em qualquer lugar, maiúscula ou minúscula.
+const HASHTAG_FORA = "deladanyavisa";
+function ficaForaDaArara(post) {
+  const tags = [...String(post.caption || "").matchAll(/#([\p{L}\p{N}_]+)/gu)].map(m => m[1].toLowerCase());
+  const extras = (post.hashtags || []).map(t => String(t).replace(/^#/, "").toLowerCase());
+  return [...tags, ...extras].includes(HASHTAG_FORA);
+}
+
 function codigoDoLink(link) {
   return String(link || "").match(/\/(?:reel|reels|p|tv)\/([^/?#]+)/)?.[1] || null;
 }
@@ -82,6 +91,10 @@ let melhoradas = 0;
 
 for (const post of posts) {
   if (!post?.id) continue;
+  if (ficaForaDaArara(post)) {
+    console.log(`Pulei o post ${post.id}: a legenda tem #DeladanyAvisa.`);
+    continue;
+  }
   const url = urlDaFoto(post);
   const idSeguro = String(post.id).replace(/[^\w-]/g, "");
   const existente = conhecidos.get(post.id) || conhecidos.get(codigoDoLink(post.permalink));
