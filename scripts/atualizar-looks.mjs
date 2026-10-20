@@ -25,10 +25,16 @@ async function lerAtuais() {
   }
 }
 
-// Primeira linha da legenda vira o nome da peça na arara.
+function codigoDoLink(link) {
+  return String(link || "").match(/\/(?:reel|reels|p|tv)\/([^/?#]+)/)?.[1] || null;
+}
+
+// Primeira linha da legenda vira o nome da peça na arara, sem emojis.
 function nomeDaLegenda(legenda) {
   const linha = String(legenda || "")
-    .split("\n").map(l => l.trim()).find(l => l.length > 0) || "";
+    .split("\n")
+    .map(l => l.replace(/[\p{Extended_Pictographic}\u{1F3FB}-\u{1F3FF}️‍]/gu, "").replace(/\s+/g, " ").trim())
+    .find(l => l.length > 0) || "";
   if (!linha) return "Novidade da semana";
   if (linha.length <= 48) return linha;
   const corte = linha.slice(0, 48);
@@ -37,7 +43,7 @@ function nomeDaLegenda(legenda) {
 
 function urlDaFoto(post) {
   const s = post.sizes || {};
-  return s.large?.mediaUrl || s.medium?.mediaUrl || s.full?.mediaUrl
+  return s.large?.mediaUrl || s.full?.mediaUrl || s.medium?.mediaUrl
     || post.thumbnailUrl
     || (post.mediaType !== "VIDEO" ? post.mediaUrl : null);
 }
@@ -68,14 +74,32 @@ const posts = (Array.isArray(feed) ? feed : feed.posts || [])
   .sort((a, b) => String(b.timestamp || "").localeCompare(String(a.timestamp || "")));
 
 const atuais = await lerAtuais();
-const conhecidos = new Set(atuais.map(l => l.id));
+// um post é reconhecido pelo id do Behold ou pelo código do link (/reel/XXXX/), para nunca duplicar
+const chaves = l => [l.id, codigoDoLink(l.link)].filter(Boolean);
+const conhecidos = new Map(atuais.flatMap(l => chaves(l).map(k => [k, l])));
 const novos = [];
+let melhoradas = 0;
 
 for (const post of posts) {
-  if (!post?.id || conhecidos.has(post.id)) continue;
+  if (!post?.id) continue;
   const url = urlDaFoto(post);
-  if (!url) continue;
   const idSeguro = String(post.id).replace(/[^\w-]/g, "");
+  const existente = conhecidos.get(post.id) || conhecidos.get(codigoDoLink(post.permalink));
+  if (existente) {
+    // look que já está na arara com foto antiga, pequena: troca pela versão grande do Behold
+    if (url && !existente.img.includes("/ig-")) {
+      try {
+        existente.img = await baixar(url, idSeguro);
+        existente.id = post.id;
+        melhoradas++;
+        console.log(`Foto melhorada: ${existente.nome}`);
+      } catch (erro) {
+        console.warn(`Não consegui melhorar a foto de ${existente.nome}: ${erro.message}`);
+      }
+    }
+    continue;
+  }
+  if (!url) continue;
   try {
     const img = await baixar(url, idSeguro);
     novos.push({
@@ -90,7 +114,7 @@ for (const post of posts) {
   }
 }
 
-if (novos.length === 0) {
+if (novos.length === 0 && melhoradas === 0) {
   console.log("Nenhum post novo. A arara continua igual.");
   process.exit(0);
 }
@@ -112,4 +136,4 @@ await writeFile(
   "// Gerado automaticamente por scripts/atualizar-looks.mjs. Não edite à mão: o robô diário sobrescreve.\n" +
   `window.LOOKS = [\n${corpo}\n];\n`
 );
-console.log(`Arara atualizada: ${novos.length} novo(s), ${lista.length} no total.`);
+console.log(`Arara atualizada: ${novos.length} novo(s), ${melhoradas} foto(s) melhorada(s), ${lista.length} no total.`);
