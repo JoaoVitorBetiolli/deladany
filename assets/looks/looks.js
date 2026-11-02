@@ -1,5 +1,8 @@
 // Gerado automaticamente por scripts/atualizar-looks.mjs. Não edite à mão: o robô diário sobrescreve.
 window.LOOKS = [
+  {"id":"18124212070934588","nome":"Elegância e sofisticação em um só look!","img":"assets/looks/ig-18124212070934588.jpg","link":"https://www.instagram.com/reel/DfNnP0XvuYu/"},
+  {"id":"18467511790140053","nome":"Elegância e sofisticação em um só look!","img":"assets/looks/ig-18467511790140053.jpg","link":"https://www.instagram.com/reel/DfNnOk6Pwnv/"},
+  {"id":"18117064091026112","nome":"Elegância e sofisticação em um só look!","img":"assets/looks/ig-18117064091026112.jpg","link":"https://www.instagram.com/reel/DfNnLu4PGx3/"},
   {"id":"17953353000318356","nome":"Conjunto shorts-saia","img":"assets/looks/ig-17953353000318356.jpg","link":"https://www.instagram.com/reel/DfF1zBTP5ZB/"},
   {"id":"17922361851234262","nome":"Conjunto shorts-saia","img":"assets/looks/ig-17922361851234262.jpg","link":"https://www.instagram.com/reel/DfF1sH5Piu2/"},
   {"id":"18180209809445167","nome":"Conjunto shorts-saia","img":"assets/looks/ig-18180209809445167.jpg","link":"https://www.instagram.com/reel/DfF1XcIPiAL/"},
@@ -8,8 +11,5 @@ window.LOOKS = [
   {"id":"18022608461947238","nome":"Conjunto maravilhoso confeccionado no ponto Roma","img":"assets/looks/ig-18022608461947238.jpg","link":"https://www.instagram.com/reel/DfA6obiPsUr/"},
   {"id":"18095437808267364","nome":"Conjunto maravilhoso confeccionado no ponto Roma","img":"assets/looks/ig-18095437808267364.jpg","link":"https://www.instagram.com/reel/DfA6lwkvraO/"},
   {"id":"18137938951642699","nome":"Conjunto em moletinho","img":"assets/looks/ig-18137938951642699.jpg","link":"https://www.instagram.com/reel/De75qnvtb0x/"},
-  {"id":"17912938029518052","nome":"Conjunto em moletinho","img":"assets/looks/ig-17912938029518052.jpg","link":"https://www.instagram.com/reel/De75psyNT0c/"},
-  {"id":"18103050251374533","nome":"Conjunto em moletinho","img":"assets/looks/ig-18103050251374533.jpg","link":"https://www.instagram.com/reel/De75oeWtdBo/"},
-  {"id":"18190061407417078","nome":"Conjunto em moletinho","img":"assets/looks/ig-18190061407417078.jpg","link":"https://www.instagram.com/reel/De75lHBNgjr/"},
-  {"id":"17913577800502394","nome":"Conjunto em moletinho","img":"assets/looks/ig-17913577800502394.jpg","link":"https://www.instagram.com/reel/De75juRNSqf/"}
+  {"id":"17912938029518052","nome":"Conjunto em moletinho","img":"assets/looks/ig-17912938029518052.jpg","link":"https://www.instagram.com/reel/De75psyNT0c/"}
 ];
